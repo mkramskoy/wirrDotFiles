@@ -16,9 +16,15 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker python pylint swiftpm)
+plugins=(git docker python pylint swiftpm kubectl zsh-autosuggestions)
+
+# Booking Cloud completion
+source <(bk completion zsh)
 
 source $ZSH/oh-my-zsh.sh
+
+alias k="kubectl"
+
 
 # User configuration
 

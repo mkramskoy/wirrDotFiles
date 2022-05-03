@@ -221,6 +221,12 @@ function bmake() {
  open -a /Applications/Xcode.app Booking.com/Booking.com.xcworkspace/
 }
 
+function bmake-light() {
+ git submodule update --init
+ ./buckw project GuestApp --config xcode.all=disabled
+ open -a /Applications/Xcode.app Booking.com/Booking.com.xcworkspace/
+}
+
 function bmake-beta() {
  git submodule update --init
  ./buckw project GuestApp
@@ -234,6 +240,37 @@ function buck-focus-on() {
     fi
     PROJECT=${2:-$(basename "$1")}
     BUCK_TARGET="//$1:$PROJECT" 
+    # Check is Workspace exist
+    ./buckw targets "$BUCK_TARGET"_Workspace 2>/dev/null
+    STATUS=$?
+    if [ $STATUS -eq 0 ]; then
+        BUCK_TARGET="$BUCK_TARGET"_Workspace
+    fi
     echo "Building $BUCK_TARGET"
-    ./buckw exp-project "$BUCK_TARGET" && open "$1/$PROJECT.xcworkspace"
+    ./buckw project "$BUCK_TARGET" && open "$1/$PROJECT.xcworkspace"
+}
+
+
+########################################
+# network aliases
+########################################
+
+alias proxy_off='http_proxy= https_proxy='
+proxy_on() {
+    proxy="http://webproxy:3128"
+    export http_proxy=$proxy
+    export ftp_proxy=$proxy
+    export rsync_proxy=$proxy
+    export https_proxy=$proxy
+    export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com,.booking.com"
+
+    export npm_config_proxy=$proxy
+    export npm_config_https_proxy=$proxy
+}
+
+########################################
+# productivity aliases
+########################################
+todo() {
+	open evernote:///view/40424894/s295/fb882bf1-276e-472c-a147-56dfa97fc15b/fb882bf1-276e-472c-a147-56dfa97fc15b/
 }
