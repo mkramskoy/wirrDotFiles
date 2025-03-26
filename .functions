@@ -217,7 +217,6 @@ function dude() {
 function bmake() {
  git submodule update --init
  ./buckw project GuestApp
- find ~/Library/Developer/Xcode/DerivedData -name '*Experiments.build' -type d -exec rm -r {} \;
  open -a /Applications/Xcode.app Booking.com/Booking.com.xcworkspace/
 }
 
@@ -271,6 +270,10 @@ proxy_on() {
 ########################################
 # productivity aliases
 ########################################
+btodo() {
+	open "obsidian://open?vault=wirrObsidianVault&file=Booking.com%2FB.KnowledgeBase%2FTODO%20Booking.com"
+}
+
 todo() {
-	open evernote:///view/40424894/s295/fb882bf1-276e-472c-a147-56dfa97fc15b/fb882bf1-276e-472c-a147-56dfa97fc15b/
+	open "obsidian://open?vault=wirrObsidianVault&file=Planning%2FTODO%20General"
 }

@@ -3,6 +3,7 @@
 	email = mkramskoy@gmail.com
 [push]
 	default = upstream
+	autoSetupRemote = true
 [core]
 	excludesfile = /Users/mkramskoy/.gitignore
 [difftool "sourcetree"]
