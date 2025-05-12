@@ -271,9 +271,9 @@ proxy_on() {
 # productivity aliases
 ########################################
 btodo() {
-	open "obsidian://open?vault=wirrObsidianVault&file=Booking.com%2FB.KnowledgeBase%2FTODO%20Booking.com"
+	open "obsidian://open?vault=wirrVault&file=Areas%2FWork%2FWork"
 }
 
 todo() {
-	open "obsidian://open?vault=wirrObsidianVault&file=Planning%2FTODO%20General"
+	open "obsidian://open?vault=wirrVault&file=Root"
 }
