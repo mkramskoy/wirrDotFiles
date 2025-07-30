@@ -24,6 +24,14 @@ plugins=(git docker python pylint swiftpm kubectl zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
+# atuin terminal history
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh)"
+
+# windsurf IDE
+alias ws="windsurf"
+export PATH="/Users/mkramskoy/.codeium/windsurf/bin:$PATH"
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -55,10 +63,9 @@ alias gaa='git add .'
 alias gc='git commit -v'
 alias gcm='git commit -m'
 alias gca='git commit --amend'
-alias gb='git switch -c'
-alias gbl='git branch -a'
-alias gco='git checkout'
-alias gcb='git checkout -b'
+alias gswc='git switch -c'.     # create + switch to a new branch
+alias gsw='git switch'
+alias gbl='git branch -a'     # list of branches
 
 # Pulling and Pushing
 alias gp='git push'
@@ -89,14 +96,3 @@ for file in ~/.{functions,extra}; do
         [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
-
-. "$HOME/.atuin/bin/env"
-
-eval "$(atuin init zsh)"
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/mkramskoy/.lmstudio/bin"
-
-# Added by Windsurf
-alias ws="windsurf"
-export PATH="/Users/mkramskoy/.codeium/windsurf/bin:$PATH"
