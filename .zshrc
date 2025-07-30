@@ -22,8 +22,6 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git docker python pylint swiftpm kubectl zsh-autosuggestions)
 
-# activating the autosuggestions when installed via homebrew
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -91,3 +89,14 @@ for file in ~/.{functions,extra}; do
         [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/mkramskoy/.lmstudio/bin"
+
+# Added by Windsurf
+alias ws="windsurf"
+export PATH="/Users/mkramskoy/.codeium/windsurf/bin:$PATH"
