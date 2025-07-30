@@ -6,7 +6,7 @@
 eval $(/opt/homebrew/bin/brew shellenv)
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/mkramskoy/.oh-my-zsh"
+export ZSH="/Users/wirrwarr/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -57,7 +57,8 @@ alias gaa='git add .'
 alias gc='git commit -v'
 alias gcm='git commit -m'
 alias gca='git commit --amend'
-alias gb='git branch -a'
+alias gb='git switch -c'
+alias gbl='git branch -a'
 alias gco='git checkout'
 alias gcb='git checkout -b'
 
