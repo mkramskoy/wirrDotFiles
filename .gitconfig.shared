@@ -1,0 +1,27 @@
+[push]
+	default = upstream
+	autoSetupRemote = true
+[core]
+	excludesfile = ~/.gitignore
+	pager = delta
+[pull]
+	rebase = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[interactive]
+	diffFilter = delta --color-only
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[delta]
+	navigate = true
+	light = false
+	side-by-side = true
+	line-numbers = true
+

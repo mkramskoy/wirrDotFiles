@@ -1,0 +1,6 @@
+# Local configuration files (these are created per-machine)
+.gitconfig
+.zshrc
+
+# macOS
+.DS_Store

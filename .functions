@@ -160,13 +160,13 @@ function getcertnames() {
 	fi;
 }
 
-# `s` with no arguments opens the current directory in Sublime Text, otherwise
+# `s` with no arguments opens the current directory in VSCode, otherwise
 # opens the given location
-function s() {
+function c() {
 	if [ $# -eq 0 ]; then
-		subl .;
+		code .;
 	else
-		subl "$@";
+		code "$@";
 	fi;
 }
 
@@ -213,42 +213,6 @@ function dude() {
   unset HTTP_PROXY
   unset HTTPS_PROXY
 }
-
-function bmake() {
- git submodule update --init
- ./buckw project GuestApp
- open -a /Applications/Xcode.app Booking.com/Booking.com.xcworkspace/
-}
-
-function bmake-light() {
- git submodule update --init
- ./buckw project GuestApp --config xcode.all=disabled
- open -a /Applications/Xcode.app Booking.com/Booking.com.xcworkspace/
-}
-
-function bmake-beta() {
- git submodule update --init
- ./buckw project GuestApp
- open -a /Applications/Xcode-beta.app Booking.com/Booking.com.xcworkspace/
-}
-
-function buck-focus-on() {
-    if [[ -z "$1" ]]; then
-        echo "Please provide location of the module 'buck-focus-on Booking.com/Module....'" 1>&2
-        exit 1
-    fi
-    PROJECT=${2:-$(basename "$1")}
-    BUCK_TARGET="//$1:$PROJECT" 
-    # Check is Workspace exist
-    ./buckw targets "$BUCK_TARGET"_Workspace 2>/dev/null
-    STATUS=$?
-    if [ $STATUS -eq 0 ]; then
-        BUCK_TARGET="$BUCK_TARGET"_Workspace
-    fi
-    echo "Building $BUCK_TARGET"
-    ./buckw project "$BUCK_TARGET" && open "$1/$PROJECT.xcworkspace"
-}
-
 
 ########################################
 # network aliases

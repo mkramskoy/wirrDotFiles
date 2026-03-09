@@ -1,0 +1,6 @@
+# Local ZSH Configuration (not tracked in git)
+# Copy this file to ~/.zshrc and customize for your machine
+# This file should source your shared config and any machine-specific settings
+
+# Load shared configuration from dotfiles repo
+source ~/git_tree/wirrDotFiles/.zshrc.shared
