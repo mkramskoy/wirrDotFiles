@@ -215,8 +215,17 @@ function dude() {
 }
 
 ########################################
-# network aliases
+# tmux worktree session
 ########################################
+# Create/attach a tmux session with a window per git worktree.
+# Each window has two panes: shell (left) + claude session --continue (right).
+# Window status bar colors indicate worktree state (green/yellow/magenta/red).
+# Usage: twt [repo_dir] [session_name]
+twt() {
+	local repo_dir="${1:-$HOME/git_tree/iphone}"
+	local session_name="${2:-iphone}"
+	"$HOME/git_tree/wirrDotFiles/tmux-worktrees.sh" "$repo_dir" "$session_name"
+}
 
 alias proxy_off='http_proxy= https_proxy='
 proxy_on() {
