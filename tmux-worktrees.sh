@@ -46,6 +46,17 @@ if [[ ${#wt_paths[@]} -eq 0 ]]; then
     exit 1
 fi
 
+# Move the master/main worktree to the front so its window is always first.
+for i in "${!wt_branches[@]}"; do
+    if [[ "${wt_branches[$i]}" == "master" || "${wt_branches[$i]}" == "main" ]]; then
+        if [[ $i -ne 0 ]]; then
+            wt_paths=("${wt_paths[$i]}" "${wt_paths[@]:0:$i}" "${wt_paths[@]:$((i+1))}")
+            wt_branches=("${wt_branches[$i]}" "${wt_branches[@]:0:$i}" "${wt_branches[@]:$((i+1))}")
+        fi
+        break
+    fi
+done
+
 # If session already exists, detect windows by pane working directories (robust
 # against Claude Code renaming window titles via escape sequences).
 session_exists=false
@@ -90,6 +101,17 @@ for i in "${!wt_paths[@]}"; do
         fi
     fi
 done
+
+# Ensure the master/main window is first (covers re-runs on existing sessions
+# where its window may sit at a later position). base-index is 1, so index 0 is
+# free; park master there, then renumber to restore a clean 1..N sequence.
+master_path="${wt_paths[0]}"
+master_win=$(tmux list-windows -t "$SESSION_NAME" -F '#{window_id}	#{pane_current_path}' \
+    | awk -F'\t' -v p="$master_path" '$2 == p {print $1; exit}')
+if [[ -n "$master_win" ]]; then
+    tmux move-window -s "$master_win" -t "$SESSION_NAME:0" 2>/dev/null || true
+    tmux move-window -r -t "$SESSION_NAME" 2>/dev/null || true
+fi
 
 # Attach (select first window only for new sessions)
 if ! $session_exists; then
