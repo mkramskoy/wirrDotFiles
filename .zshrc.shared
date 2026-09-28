@@ -18,7 +18,7 @@ COMPLETION_WAITING_DOTS="true"
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # For a full list of active aliases, run `alias`.
-plugins=(zsh-autosuggestions tmux swiftpm git python pylint)
+plugins=(zsh-autosuggestions swiftpm git python pylint herdr)
 
 source $ZSH/oh-my-zsh.sh
 
